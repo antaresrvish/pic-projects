@@ -1,0 +1,49 @@
+007.7   C1OUT
+00A     @SCRATCH
+00B     @SCRATCH
+00B     _RETURN_
+00C     @SCRATCH
+00D     @SCRATCH
+00E     @TRIS_B
+00F     main.lastButtonState
+010     main.buttonState
+011     @delay_ms1.P1
+
+ROM Allocation:
+000003  @delay_ms1
+000015  @cinit1
+000015  main
+000019  @cinit2
+
+Project Directory:
+    C:\Users\Antares\Documents\GitHub\pic-projects\pic12f510\input\
+
+Project Files:
+    main.c                                                  [13-Oca-24 01:13  CRC=79F289C8]
+    main.h                                                  [12-Oca-24 23:40  CRC=00000000]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\12F510.h [21-Haz-13 16:04  CRC=E7F7D255]
+
+Source signature=49E22E72
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC12F510
+    Pointer Size:   5
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

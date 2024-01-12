@@ -1,0 +1,118 @@
+CCS PCB C Compiler, Version 5.007, 61971               13-Oca-24 01:13
+
+               Filename:   C:\Users\Antares\Documents\GitHub\pic-projects\pic12f510\input\main.lst
+
+               ROM used:   60 words (6%)
+                           Largest free fragment is 512
+               RAM used:   5 (23%) at main() level
+                           8 (36%) worst case
+               Stack used: 0 locations
+               Stack size: 2
+
+*
+0000:  MOVWF  05
+0001:  GOTO   015
+0002:  GOTO   003
+.................... #include <main.h> 
+.................... #include <12F510.h> 
+.................... //////// Standard Header file for the PIC12F510 device //////////////// 
+.................... #device PIC12F510 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+....................  
+.................... #use delay(internal=8MHz) 
+0003:  MOVF   11,W
+0004:  BTFSC  03.2
+0005:  GOTO   013
+0006:  MOVLW  02
+0007:  MOVWF  0B
+0008:  CLRF   0A
+0009:  DECFSZ 0A,F
+000A:  GOTO   009
+000B:  DECFSZ 0B,F
+000C:  GOTO   008
+000D:  MOVLW  97
+000E:  MOVWF  0A
+000F:  DECFSZ 0A,F
+0010:  GOTO   00F
+0011:  DECFSZ 11,F
+0012:  GOTO   006
+0013:  BCF    03.5
+0014:  GOTO   03D (RETURN)
+....................  
+....................  
+*
+0025:  CLRF   10
+0026:  BTFSC  06.4
+0027:  INCF   10,F
+....................  
+.................... void main() 
+*
+0015:  MOVLW  FF
+0016:  MOVWF  0E
+0017:  BCF    08.6
+0018:  BCF    08.7
+.................... { 
+....................    setup_adc_ports(ADC_OFF); 
+0019:  BCF    08.6
+001A:  BCF    08.7
+....................    setup_comparator(NC_NC_NC_NC); 
+001B:  MOVLW  27
+001C:  MOVWF  07
+001D:  MOVF   00,W
+001E:  MOVWF  00
+001F:  MOVLW  06
+0020:  MOVWF  0A
+0021:  DECFSZ 0A,F
+0022:  GOTO   021
+0023:  NOP
+0024:  MOVF   07,W
+....................  
+....................    while(1){ 
+....................    int lastButtonState; 
+....................    int buttonState=input_state(PIN_B4); 
+....................  
+....................    if(buttonState != lastButtonState){ 
+*
+0028:  MOVF   0F,W
+0029:  SUBWF  10,W
+002A:  BTFSC  03.2
+002B:  GOTO   03A
+....................    lastButtonState=buttonState; 
+002C:  MOVF   10,W
+002D:  MOVWF  0F
+....................  
+....................       if(buttonState == 0){ 
+002E:  MOVF   10,F
+002F:  BTFSS  03.2
+0030:  GOTO   036
+....................           output_high(PIN_B5); // LED is off 
+0031:  BCF    0E.5
+0032:  MOVF   0E,W
+0033:  TRIS   6
+0034:  BSF    06.5
+....................       } 
+0035:  GOTO   03A
+....................       else 
+....................           output_low(PIN_B5); // LED is on 
+0036:  BCF    0E.5
+0037:  MOVF   0E,W
+0038:  TRIS   6
+0039:  BCF    06.5
+....................    } 
+.................... delay_ms(50); 
+003A:  MOVLW  32
+003B:  MOVWF  11
+003C:  GOTO   002
+003D:  GOTO   025
+.................... } 
+....................  
+.................... } 
+003E:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0FFA   INTRC NOWDT NOPROTECT MCLR IOSC8
