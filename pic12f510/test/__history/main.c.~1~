@@ -1,0 +1,16 @@
+#include <main.h>
+
+void main()
+{
+	setup_adc_ports(AN0_AN1_AN2);
+
+	//Example blinking LED program
+	while(true)
+	{
+		output_low(LED);
+		delay_ms(DELAY);
+		output_high(LED);
+		delay_ms(DELAY);
+	}
+
+}

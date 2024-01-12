@@ -1,0 +1,19 @@
+#include <main.h>
+
+void main()
+{
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
+   set_tris_b(0x01);   // RB0 pini giri?,di?er u?lar ??k?? olarak y?nlendiriliyor
+   output_b(0x00); 
+
+   //Example blinking LED program
+   while(true)
+   {
+      output_low(LED);
+      delay_ms(DELAY);
+      output_high(LED);
+      delay_ms(DELAY);
+   }
+
+}

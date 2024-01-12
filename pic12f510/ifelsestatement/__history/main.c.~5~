@@ -1,0 +1,64 @@
+#include <main.h>
+
+void wait_for_button(void);
+
+//====================================
+void main()
+{
+   setup_adc_ports(NO_ANALOGS);
+   setup_comparator(NC_NC_NC_NC);
+   output_low(PIN_B5);
+
+   while(1)
+     {
+      wait_for_button();
+      output_toggle(PIN_B5);
+     }
+}
+//==================================
+
+void wait_for_button(void)
+{
+   char count;
+
+// Wait for the button to be released. 
+// The button must be in the "up" state for two
+// consecutive samples, at 10 ms intervals.
+
+   count = 0;
+
+   while(1)
+     {
+      if(input(PIN_B3))
+         count++;
+      else
+         count = 0;
+      
+      if(count == 2)
+         break;
+   
+      delay_ms(10);
+     }
+
+// Now that the button is up, wait until the
+// user presses it. For the keypress to be
+// considered valid, the button must be held
+// down for two consecutive samples, taken at
+// 10 ms intervals.
+
+   count = 0;
+
+   while(1)
+     {
+      if(input(PIN_B3) == 0)
+         count++;
+      else
+         count = 0;
+      
+      if(count == 2)
+         break;
+   
+      delay_ms(10);
+     }
+
+}

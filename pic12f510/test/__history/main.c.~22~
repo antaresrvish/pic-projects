@@ -1,0 +1,23 @@
+#include <12F510.h>
+#device ADC=16
+
+#FUSES NOMCLR,INTRC,NOPROTECT,IOSC4                   
+
+#use delay(internal=8MHZ)
+
+void main()
+{
+   setup_adc_ports(NO_ANALOGS); //analoglar kapalý.
+   setup_comparator(NC_NC_NC_NC); //Opsiyonel çýkýþlarý kapatýr
+   set_tris_b(0x00);
+   output_b(0x00); 
+
+   while(true)
+   {
+      output_high(PIN_B0);
+      delay_ms(600);
+      output_low(PIN_B0);
+      delay_ms(500);
+   }
+
+}

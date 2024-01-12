@@ -1,0 +1,23 @@
+#include <12F510.h>
+#device ADC=8
+
+#FUSES NOWDT,INTRC                    
+
+#use delay(internal=8MHZ)
+
+void main()
+{
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
+   set_tris_b(0x01);
+   output_b(0x00); 
+
+   while(true)
+   {
+      output_high(PIN_B0);
+      delay_ms(600);
+      output_low(PIN_B0);
+      delay_ms(500);
+   }
+
+}

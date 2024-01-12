@@ -1,0 +1,87 @@
+CCS PCB C Compiler, Version 5.007, 61971               08-Oca-24 23:48
+
+               Filename:   C:\Users\Antares\Desktop\pic12f510\ifelsestatement\main.lst
+
+               ROM used:   36 words (4%)
+                           Largest free fragment is 512
+               RAM used:   6 (27%) at main() level
+                           6 (27%) worst case
+               Stack used: 0 locations
+               Stack size: 2
+
+*
+0000:  MOVWF  05
+0001:  GOTO   002
+.................... #include <main.h> 
+.................... #include <12F510.h> 
+.................... //////// Standard Header file for the PIC12F510 device //////////////// 
+.................... #device PIC12F510 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES WDT,INTRC,NOPROTECT,NOMCLR                   //No Watch Dog Timer 
+....................  
+.................... #use delay(internal=8MHz) 
+....................  
+....................  
+....................  
+.................... //==================================== 
+.................... void main() 
+0002:  MOVLW  FF
+0003:  MOVWF  0E
+0004:  BCF    08.6
+0005:  BCF    08.7
+.................... { 
+....................    setup_adc_ports(NO_ANALOGS); 
+0006:  BCF    08.6
+0007:  BCF    08.7
+....................    setup_comparator(NC_NC);  
+0008:  MOVLW  27
+0009:  MOVWF  07
+000A:  MOVF   00,W
+000B:  MOVWF  00
+000C:  MOVLW  06
+000D:  MOVWF  0A
+000E:  DECFSZ 0A,F
+000F:  GOTO   00E
+0010:  NOP
+0011:  MOVF   07,W
+....................     
+....................    while(1) 
+....................      { 
+....................       output_high(PIN_B5); 
+0012:  BCF    0E.5
+0013:  MOVF   0E,W
+0014:  TRIS   6
+0015:  BSF    06.5
+....................       if(input(PIN_B3)==1){ 
+0016:  BSF    0E.3
+0017:  MOVF   0E,W
+0018:  TRIS   6
+0019:  BTFSS  06.3
+001A:  GOTO   020
+....................       output_high(PIN_B0); 
+001B:  BCF    0E.0
+001C:  MOVF   0E,W
+001D:  TRIS   6
+001E:  BSF    06.0
+....................       } 
+001F:  GOTO   024
+....................       else{ 
+....................       output_low(PIN_B0); 
+0020:  BCF    0E.0
+0021:  MOVF   0E,W
+0022:  TRIS   6
+0023:  BCF    06.0
+....................       } 
+0024:  GOTO   012
+....................      } 
+.................... } 
+....................  
+0025:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 0FEE   INTRC WDT NOPROTECT NOMCLR IOSC8

@@ -1,0 +1,202 @@
+CCS PCB C Compiler, Version 5.007, 61971               08-Oca-24 01:41
+
+               Filename:   C:\Users\Antares\Desktop\pic12f510\test\main.lst
+
+               ROM used:   136 words (13%)
+                           Largest free fragment is 512
+               RAM used:   6 (27%) at main() level
+                           7 (32%) worst case
+               Stack used: 0 locations
+               Stack size: 2
+
+*
+0000:  MOVWF  05
+0001:  GOTO   014
+0002:  GOTO   003
+.................... #include <12F510.h> 
+.................... //////// Standard Header file for the PIC12F510 device //////////////// 
+.................... #device PIC12F510 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................  
+.................... #FUSES NOMCLR,INTRC,NOPROTECT,IOSC4                    
+....................  
+.................... #use delay(internal=8MHZ) 
+0003:  MOVF   10,W
+0004:  BTFSC  03.2
+0005:  GOTO   013
+0006:  MOVLW  02
+0007:  MOVWF  0B
+0008:  CLRF   0A
+0009:  DECFSZ 0A,F
+000A:  GOTO   009
+000B:  DECFSZ 0B,F
+000C:  GOTO   008
+000D:  MOVLW  97
+000E:  MOVWF  0A
+000F:  DECFSZ 0A,F
+0010:  GOTO   00F
+0011:  DECFSZ 10,F
+0012:  GOTO   006
+0013:  RETLW  00
+....................  
+.................... void main() 
+0014:  MOVLW  FF
+0015:  MOVWF  0E
+0016:  BCF    08.6
+0017:  BCF    08.7
+.................... { 
+....................    setup_adc_ports(NO_ANALOGS); //analoglar kapalý. 
+0018:  BCF    08.6
+0019:  BCF    08.7
+....................    setup_comparator(NC_NC_NC_NC); //Opsiyonel çýkýþlarý kapatýr 
+001A:  MOVLW  27
+001B:  MOVWF  07
+001C:  MOVF   00,W
+001D:  MOVWF  00
+001E:  MOVLW  06
+001F:  MOVWF  0A
+0020:  DECFSZ 0A,F
+0021:  GOTO   020
+0022:  NOP
+0023:  MOVF   07,W
+....................    set_tris_b(0x00); 
+0024:  MOVLW  00
+0025:  TRIS   6
+0026:  MOVWF  0E
+....................    output_b(0x00);  
+0027:  MOVLW  00
+0028:  MOVWF  0E
+0029:  TRIS   6
+002A:  CLRF   06
+....................     
+....................    if(input(PIN_B3) == 1){ 
+002B:  BSF    0E.3
+002C:  MOVF   0E,W
+002D:  TRIS   6
+002E:  BTFSS  06.3
+....................     
+....................    } 
+....................  
+....................    while(true) 
+....................    { 
+....................       output_high(PIN_B0); 
+002F:  BCF    0E.0
+0030:  MOVF   0E,W
+0031:  TRIS   6
+0032:  BSF    06.0
+....................       delay_ms(800); 
+0033:  MOVLW  04
+0034:  MOVWF  0F
+0035:  MOVLW  C8
+0036:  MOVWF  10
+0037:  CALL   003
+0038:  DECFSZ 0F,F
+0039:  GOTO   035
+....................       output_low(PIN_B0); 
+003A:  BCF    0E.0
+003B:  MOVF   0E,W
+003C:  TRIS   6
+003D:  BCF    06.0
+....................       delay_ms(50); 
+003E:  MOVLW  32
+003F:  MOVWF  10
+0040:  CALL   003
+....................       output_high(PIN_B1); 
+0041:  BCF    0E.1
+0042:  MOVF   0E,W
+0043:  TRIS   6
+0044:  BSF    06.1
+....................       delay_ms(800); 
+0045:  MOVLW  04
+0046:  MOVWF  0F
+0047:  MOVLW  C8
+0048:  MOVWF  10
+0049:  CALL   003
+004A:  DECFSZ 0F,F
+004B:  GOTO   047
+....................       output_low(PIN_B1); 
+004C:  BCF    0E.1
+004D:  MOVF   0E,W
+004E:  TRIS   6
+004F:  BCF    06.1
+....................       delay_ms(50); 
+0050:  MOVLW  32
+0051:  MOVWF  10
+0052:  CALL   003
+....................       output_high(PIN_B2); 
+0053:  BCF    0E.2
+0054:  MOVF   0E,W
+0055:  TRIS   6
+0056:  BSF    06.2
+....................       delay_ms(800); 
+0057:  MOVLW  04
+0058:  MOVWF  0F
+0059:  MOVLW  C8
+005A:  MOVWF  10
+005B:  CALL   003
+005C:  DECFSZ 0F,F
+005D:  GOTO   059
+....................       output_low(PIN_B2); 
+005E:  BCF    0E.2
+005F:  MOVF   0E,W
+0060:  TRIS   6
+0061:  BCF    06.2
+....................       delay_ms(50); 
+0062:  MOVLW  32
+0063:  MOVWF  10
+0064:  CALL   003
+....................       output_high(PIN_B4); 
+0065:  BCF    0E.4
+0066:  MOVF   0E,W
+0067:  TRIS   6
+0068:  BSF    06.4
+....................       delay_ms(800); 
+0069:  MOVLW  04
+006A:  MOVWF  0F
+006B:  MOVLW  C8
+006C:  MOVWF  10
+006D:  CALL   003
+006E:  DECFSZ 0F,F
+006F:  GOTO   06B
+....................       output_low(PIN_B4); 
+0070:  BCF    0E.4
+0071:  MOVF   0E,W
+0072:  TRIS   6
+0073:  BCF    06.4
+....................       delay_ms(50); 
+0074:  MOVLW  32
+0075:  MOVWF  10
+0076:  CALL   003
+....................       output_high(PIN_B5); 
+0077:  BCF    0E.5
+0078:  MOVF   0E,W
+0079:  TRIS   6
+007A:  BSF    06.5
+....................       delay_ms(800); 
+007B:  MOVLW  04
+007C:  MOVWF  0F
+007D:  MOVLW  C8
+007E:  MOVWF  10
+007F:  CALL   003
+0080:  DECFSZ 0F,F
+0081:  GOTO   07D
+....................       output_low(PIN_B5); 
+0082:  BCF    0E.5
+0083:  MOVF   0E,W
+0084:  TRIS   6
+0085:  BCF    06.5
+....................       delay_ms(50); 
+0086:  MOVLW  32
+0087:  MOVWF  10
+0088:  CALL   003
+0089:  GOTO   02F
+....................    } 
+....................  
+.................... } 
+008A:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0FEA   INTRC NOWDT NOPROTECT NOMCLR IOSC8

@@ -1,0 +1,47 @@
+007.7   C1OUT
+00A     @SCRATCH
+00B     @SCRATCH
+00B     _RETURN_
+00C     @SCRATCH
+00D     @SCRATCH
+00E     @TRIS_B
+00F     main.@SCRATCH1
+010     @delay_ms1.P1
+
+ROM Allocation:
+000003  @delay_ms1
+000014  @cinit1
+000014  main
+000018  @cinit2
+
+Project Directory:
+    C:\Users\Antares\Desktop\pic12f510\test\
+
+Project Files:
+    main.c                                                  [08-Oca-24 01:41  CRC=1531FF2B]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\12F510.h [21-Haz-13 16:04  CRC=E7F7D255]
+
+Source signature=E521A3D5
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC12F510
+    Pointer Size:   5
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

@@ -1,0 +1,7 @@
+#include <12F510.h>
+#device ADC=16
+
+#FUSES NOMCLR,INTRC,NOPROTECT,IOSC4                    //No Watch Dog Timer
+
+#use delay(internal=8MHz)
+
