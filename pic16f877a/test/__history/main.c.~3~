@@ -1,0 +1,13 @@
+#include <main.h>
+
+void main()
+{
+   setup_comparator(NC_NC_NC_NC);
+   setup_adc(ADC_OFF);
+
+   while(TRUE)
+   {
+      
+   }
+
+}
