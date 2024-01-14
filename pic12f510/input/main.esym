@@ -1,7 +1,8 @@
-D G "__PCB__" 0 26 ""5.007""
-D G "__DEVICE__" 0 26 "510"
-D G "__DATE__" 0 26 ""13-Oca-24""
-D G "__TIME__" 0 26 ""01:13:41"" "Standard Header file for the PIC12F510 device ////////////////"
+d G "ADC_READ_ONLY" 2 199 "6"
+D G "__PCB__" 0 23 ""5.007""
+D G "__DEVICE__" 0 23 "510"
+D G "__DATE__" 0 23 ""13-Oca-24""
+D G "__TIME__" 0 23 ""18:40:01"" "Standard Header file for the PIC12F510 device ////////////////"
 c L "set_tris_b" 2 5 12 "FUNCTION"
 v L "value" 2 27 "int8" `35 
 f B "set_tris_b" 2 27 "void(int8 value)" `34 
@@ -523,10 +524,7 @@ f B "goto_address" 2 397 "void(int16 address)" `463
 v L "label" 2 398 "int16" `466 
 f B "label_address" 2 398 "int16(int16 label)" `465 
 F G "main" 0 4 "void()" `471 
-V L "lastButtonState" 0 9 "int8" `474 
-V L "buttonState" 0 10 "int8" `475 
-C L "main" 0 16 1 "FUNCTION"
-C L "main" 0 16 1 "FUNCTION"
+V L "bState" 0 7 "int8" `474 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

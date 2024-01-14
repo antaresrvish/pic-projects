@@ -1,11 +1,11 @@
-CCS PCB C Compiler, Version 5.007, 61971               13-Oca-24 01:13
+CCS PCB C Compiler, Version 5.007, 61971               13-Oca-24 18:40
 
                Filename:   C:\Users\Antares\Documents\GitHub\pic-projects\pic12f510\input\main.lst
 
-               ROM used:   60 words (6%)
+               ROM used:   59 words (6%)
                            Largest free fragment is 512
-               RAM used:   5 (23%) at main() level
-                           8 (36%) worst case
+               RAM used:   6 (27%) at main() level
+                           7 (32%) worst case
                Stack used: 0 locations
                Stack size: 2
 
@@ -25,7 +25,7 @@ CCS PCB C Compiler, Version 5.007, 61971               13-Oca-24 01:13
 .................... #FUSES NOWDT                 	//No Watch Dog Timer 
 ....................  
 .................... #use delay(internal=8MHz) 
-0003:  MOVF   11,W
+0003:  MOVF   10,W
 0004:  BTFSC  03.2
 0005:  GOTO   013
 0006:  MOVLW  02
@@ -39,19 +39,14 @@ CCS PCB C Compiler, Version 5.007, 61971               13-Oca-24 01:13
 000E:  MOVWF  0A
 000F:  DECFSZ 0A,F
 0010:  GOTO   00F
-0011:  DECFSZ 11,F
+0011:  DECFSZ 10,F
 0012:  GOTO   006
 0013:  BCF    03.5
-0014:  GOTO   03D (RETURN)
+0014:  GOTO   03C (RETURN)
 ....................  
 ....................  
-*
-0025:  CLRF   10
-0026:  BTFSC  06.4
-0027:  INCF   10,F
 ....................  
 .................... void main() 
-*
 0015:  MOVLW  FF
 0016:  MOVWF  0E
 0017:  BCF    08.6
@@ -71,48 +66,44 @@ CCS PCB C Compiler, Version 5.007, 61971               13-Oca-24 01:13
 0022:  GOTO   021
 0023:  NOP
 0024:  MOVF   07,W
-....................  
+....................    int bState;    
 ....................    while(1){ 
-....................    int lastButtonState; 
-....................    int buttonState=input_state(PIN_B4); 
-....................  
-....................    if(buttonState != lastButtonState){ 
-*
-0028:  MOVF   0F,W
-0029:  SUBWF  10,W
-002A:  BTFSC  03.2
-002B:  GOTO   03A
-....................    lastButtonState=buttonState; 
-002C:  MOVF   10,W
-002D:  MOVWF  0F
-....................  
-....................       if(buttonState == 0){ 
-002E:  MOVF   10,F
-002F:  BTFSS  03.2
-0030:  GOTO   036
-....................           output_high(PIN_B5); // LED is off 
-0031:  BCF    0E.5
-0032:  MOVF   0E,W
-0033:  TRIS   6
-0034:  BSF    06.5
+....................       if(input(PIN_B4) == 0) {  
+0025:  BSF    0E.4
+0026:  MOVF   0E,W
+0027:  TRIS   6
+0028:  BTFSC  06.4
+0029:  GOTO   03C
+....................          output_high(PIN_B5); 
+002A:  BCF    0E.5
+002B:  MOVF   0E,W
+002C:  TRIS   6
+002D:  BSF    06.5
+....................          bState += 1; 
+002E:  MOVLW  01
+002F:  ADDWF  0F,F
+....................          if(bState % 2 == 0){ 
+0030:  MOVF   0F,W
+0031:  ANDLW  01
+0032:  BTFSS  03.2
+0033:  GOTO   039
+....................             output_low(PIN_B5); 
+0034:  BCF    0E.5
+0035:  MOVF   0E,W
+0036:  TRIS   6
+0037:  BCF    06.5
+....................             bState = 0; 
+0038:  CLRF   0F
+....................          } 
+....................       delay_ms(100); 
+0039:  MOVLW  64
+003A:  MOVWF  10
+003B:  GOTO   002
 ....................       } 
-0035:  GOTO   03A
-....................       else 
-....................           output_low(PIN_B5); // LED is on 
-0036:  BCF    0E.5
-0037:  MOVF   0E,W
-0038:  TRIS   6
-0039:  BCF    06.5
+003C:  GOTO   025
 ....................    } 
-.................... delay_ms(50); 
-003A:  MOVLW  32
-003B:  MOVWF  11
-003C:  GOTO   002
-003D:  GOTO   025
 .................... } 
-....................  
-.................... } 
-003E:  SLEEP
+003D:  SLEEP
 
 Configuration Fuses:
    Word  1: 0FFA   INTRC NOWDT NOPROTECT MCLR IOSC8

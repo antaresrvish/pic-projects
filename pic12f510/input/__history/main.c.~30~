@@ -1,0 +1,23 @@
+#include <main.h>
+
+void main()
+{
+   setup_adc_ports(ADC_OFF);
+   setup_comparator(NC_NC_NC_NC);
+   
+   while(1){
+      int button = input_state(PIN_B4); //1
+      int lastbtnstate; //null + 1
+      if(button != lastbtnstate){
+         lastbtnstate = button; //1
+         if(button == 0){ //clicked
+            output_high(PIN_B5);
+            lastbtnstate = button;
+         }
+      }else{
+         if(button == 0){ //clicked
+            output_low(PIN_B5);
+         }
+      }
+   }
+}

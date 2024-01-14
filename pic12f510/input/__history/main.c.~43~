@@ -9,11 +9,12 @@ void main()
       if(input(PIN_B4) == 0) { 
          output_high(PIN_B5);
          bState += 1;
-         if(bState % 2 == 0){
-            output_low(PIN_B5);
-            bState = 0;
-         }
-      delay_ms(100);
+      if(bState % 2 == 0){
+         output_low(PIN_B5);
+         bState = 0;
       }
+     delay_ms(100);
+  }
    }
+
 }

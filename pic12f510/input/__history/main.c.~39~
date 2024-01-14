@@ -1,0 +1,26 @@
+#include <main.h>
+
+void main()
+{
+   setup_adc_ports(ADC_OFF);
+   setup_comparator(NC_NC_NC_NC);
+   int val;
+   int oldVal = 0;
+   int state = 0;
+   while(1){
+      val = input(PIN_B4);
+      if(val != oldVal){
+         if(state == 0){
+            output_high(PIN_B5);
+            state = 1;
+         }else{
+            output_low(PIN_B5);
+            state = 0;
+         }
+         oldVal = 1;
+      }else{
+         oldVal = 0;
+      }
+      
+   }
+}

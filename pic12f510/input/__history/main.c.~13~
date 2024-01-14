@@ -1,0 +1,23 @@
+#include <main.h>
+
+void main()
+{
+   setup_adc_ports(ADC_OFF);
+   setup_comparator(NC_NC_NC_NC);
+
+   while(1){
+      int buttonState = input_state(PIN_B4);
+      int lastButtonState = buttonState;
+
+      if(buttonState != lastButtonState){
+      int lastButtonState=buttonState;
+
+         if(buttonState == 0){
+          output_high(PIN_B5); // LED is off
+         }
+         else{
+          output_low(PIN_B5); // LED is on
+         }
+      }
+   }
+}
